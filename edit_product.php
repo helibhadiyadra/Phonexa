@@ -14,17 +14,26 @@ if(isset($_POST['update']))
 
     if($_FILES['image']['name'] != "") 
     {
-        $image = $_FILES['image']['name'];
-        move_uploaded_file($_FILES['image']['tmp_name'], "uploads/".$image);
+        $new_image = $_FILES['image']['name'];
+        $tmp_name = $_FILES['image']['tmp_name'];
+        $upload_path = "uploads/" . $new_image;
 
-        mysqli_query($conn, "UPDATE products SET 
+        if(move_uploaded_file($tmp_name, $upload_path))
+        {
+            if(!empty($row['image']) && file_exists("uploads/" . $row['image']))
+            {
+                unlink("uploads/" . $row['image']);
+            }
+
+            mysqli_query($conn, "UPDATE products SET 
             name='$name',
             description='$description',
             price='$price',
             status='$status',
-            image='$image'
+            image='$new_image'
             WHERE id=$id");
-    } 
+        }
+    }
     else 
     {
         mysqli_query($conn, "UPDATE products SET 
@@ -169,15 +178,15 @@ a
 
     <label>Status:</label>
     <select name="status">
-        <option value="Available" <?php if($row['status']=="Available") echo "selected"; ?>>Available</option>
-        <option value="Out of Stock" <?php if($row['status']=="Out of Stock") echo "selected"; ?>>Out of Stock</option>
+        <option value="Active" <?php if($row['status']=="Active") echo "selected"; ?>>Active</option>
+        <option value="Inactive" <?php if($row['status']=="Inactive") echo "selected"; ?>>Inactive</option>
     </select>
 
     Current Image:
     <img src="uploads/<?php echo $row['image']; ?>" width="100">
 
     Update Image:
-    <input type="file" name="image">
+    <input type="file" name="image" multiple="true">
 
     <input type="submit" name="update" value="Update Product">
 
