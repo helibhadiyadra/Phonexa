@@ -114,15 +114,15 @@ button
     <textarea name="description" rows="4" cols="40" required></textarea><br><br>
 
     <label>Upload Image:</label><br>
-    <input type="file" name="image" required><br><br>
+    <input type="file" name="image" multiple="true" required><br><br>
 
     <label>Price:</label><br>
     <input type="number" name="price" required><br><br>
 
     <label>Status:</label><br>
     <select name="status">
-        <option value="Available">Available</option>
-        <option value="Out of Stock">Out of Stock</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
     </select><br><br>
 
     <input type="submit" name="submit" value="Add Product">
