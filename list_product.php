@@ -87,12 +87,12 @@ a
     border-radius: 8px;
     font-size: 18px;
 }
-.status-available 
+.status-active
 {
     color: green;
     font-weight: bold;
 }
-.status-outofstock 
+.status-inactive 
 {
     color: red;
     font-weight: bold;
@@ -124,20 +124,22 @@ a
             <td><?php echo $row['price']; ?></td>
             <td>
                 <?php
-                    if($row['status'] == "Available") 
+                    if($row['status'] == "Active") 
                     {
-                        echo "<span class='status-available'>Available</span>";
+                        echo "<span class='status-active'>Active</span>";
                     } 
                     else 
                     {
-                        echo "<span class='status-outofstock'>Out of Stock</span>";
+                        echo "<span class='status-inactive'>Inactive</span>";
                     }
     ?>
             </td>
             <td>
                 <a class="view-btn" href="view_product.php?id=<?php echo $row['id']; ?>">View</a> 
                 <a class="edit-btn" href="edit_product.php?id=<?php echo $row['id']; ?>">Edit</a> 
-                <a class="delete-btn" href="delete_product.php?id=<?php echo $row['id']; ?>">Delete</a>
+                <a class="delete-btn" href="delete_product.php?id=<?php echo $row['id']; ?>"
+                onclick="return confirm('Are you sure you want to delete this product?');">
+                Delete</a>
             </td>
         </tr>
     <?php } ?>
