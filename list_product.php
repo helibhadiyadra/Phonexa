@@ -75,7 +75,8 @@ a
     background: #ef4444;
     color: white;
 }
-.add-btn {
+.add-btn 
+{
     position: absolute;
     right: 110px;
     top: 6%;
