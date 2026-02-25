@@ -111,7 +111,8 @@ img
     margin-bottom: 8px;
     border-radius: 6px;
 }
-form img {
+form img
+{
     display: inline-block;
     vertical-align: middle;
     margin-left: 15px;
