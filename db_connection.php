@@ -23,7 +23,7 @@ CREATE TABLE products (
     description TEXT,
     image VARCHAR(255),
     price DECIMAL(10,2),
-    status ENUM('Available','Out of Stock') DEFAULT 'Available',
+    status ENUM('Active','Inactive') DEFAULT 'Active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -->
 
